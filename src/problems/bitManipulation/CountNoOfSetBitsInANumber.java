@@ -1,7 +1,8 @@
 package problems.bitManipulation;
 
 /**
- * Problem Statement : https://www.interviewbit.com/problems/number-of-1-bits/
+ * Problem Statement 
+ * See <a href="https://www.interviewbit.com/problems/number-of-1-bits/"> Count No Of 1 Bits</a> 
  */
 public class CountNoOfSetBitsInANumber {
 

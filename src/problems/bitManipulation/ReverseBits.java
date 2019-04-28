@@ -1,7 +1,8 @@
 package problems.bitManipulation;
 
 /**
- * Problem Statement : https://www.interviewbit.com/problems/reverse-bits/
+ * Problem Statement 
+ * See <a href="https://www.interviewbit.com/problems/reverse-bits/"> Reverse Bits</a> 
  */
 public class ReverseBits {
 
