@@ -1,5 +1,8 @@
 package problems.bitManipulation;
 
+/**
+ * Problem Statement : https://www.interviewbit.com/problems/reverse-bits/
+ */
 public class ReverseBits {
 
   public static void main(String[] args) {
