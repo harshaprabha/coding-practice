@@ -11,13 +11,14 @@ public class CountNoOfSetBitsInANumber {
     System.out.println(countNoOfSetBitsInANumber.numSetBitsUsingBitOp(999999999));
   }
 
-  // Method 1
+  /**
+   * Method 1 - Time complexity : O(logN)
+   */
   public int numSetBits(long a) {
     int count = 0;
     long num = 0;
     long remainder = 0;
 
-    // Method 1 - O(logN)
     while (a >= 2) {
       num = a / 2;
       remainder = a % 2;
@@ -33,7 +34,9 @@ public class CountNoOfSetBitsInANumber {
 
   }
 
-  // Method 2
+  /**
+   * Method 2 - Time complexity : O(no_of_ones)
+   */
   public int numSetBitsUsingBitTrick(long a) {
     int count = 0;
 
@@ -47,7 +50,9 @@ public class CountNoOfSetBitsInANumber {
 
   }
 
-  // Method 3 : bit version of Method 1 - O(logN)
+  /**
+   * Method 3 -  Time complexity : O(log N)
+   */
   public int numSetBitsUsingBitOp(long a) {
     int count = 0;
     while (a > 0) {
