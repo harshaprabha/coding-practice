@@ -36,6 +36,7 @@ public class CountingSort implements Sort {
         max = A[i];
       }
     }
+
     //Temporary storage to hold count elements of array A
     int C[] = new int[max + 1];
 
