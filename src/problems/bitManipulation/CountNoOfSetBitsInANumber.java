@@ -1,8 +1,8 @@
 package problems.bitManipulation;
 
 /**
- * Problem Statement 
- * See <a href="https://www.interviewbit.com/problems/number-of-1-bits/"> Count No Of 1 Bits</a> 
+ * Problem Statement See <a href="https://www.interviewbit.com/problems/number-of-1-bits/"> Count No
+ * Of 1 Bits</a>
  */
 public class CountNoOfSetBitsInANumber {
 
@@ -11,7 +11,7 @@ public class CountNoOfSetBitsInANumber {
     CountNoOfSetBitsInANumber countNoOfSetBitsInANumber = new CountNoOfSetBitsInANumber();
 
     System.out.println(countNoOfSetBitsInANumber.numSetBits(999999999));
-    System.out.println(countNoOfSetBitsInANumber.numSetBitsUsingBitTrick(999999999));
+    System.out.println(countNoOfSetBitsInANumber.numSetBitsUsingBitTrick(3));
     System.out.println(countNoOfSetBitsInANumber.numSetBitsUsingBitOp(999999999));
   }
 
@@ -26,13 +26,15 @@ public class CountNoOfSetBitsInANumber {
     while (a >= 2) {
       num = a / 2;
       remainder = a % 2;
-      if (remainder == 1)
+      if (remainder == 1) {
         count++;
+      }
       a = num;
 
     }
-    if (a == 1)
+    if (a == 1) {
       count++;
+    }
 
     return count;
 
@@ -66,6 +68,19 @@ public class CountNoOfSetBitsInANumber {
       a = a >> 1;
     }
     return count;
+  }
+
+  /**
+   * Method 4 -  Time complexity : O(32)
+   */
+  public int numSetBitsUsingMasking(long a) {
+    int setbits = 0;
+    for (int i = 0; i < 32; i++) {
+      if ((a & (1 << i)) != 0) {
+        setbits++;
+      }
+    }
+    return setbits;
   }
 
 }
