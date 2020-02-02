@@ -5,11 +5,13 @@ public class Node {
   int value;
   Node left;
   Node right;
+  Node inorder;
 
   public Node(int n) {
     this.value = n;
     this.left = null;
     this.right = null;
+    this.inorder=null;
   }
 
   @Override
