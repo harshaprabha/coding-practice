@@ -16,7 +16,7 @@ public class Subsets {
 
   public static void main(String[] args) {
     ArrayList<Integer> A = new ArrayList<>(Arrays.asList(1, 2, 3));
-    subsetsIterativeNoOrder(A);
+    //subsetsIterativeNoOrder(A);
     System.out.println(new Subsets().subsets(A));
 
   }
@@ -26,7 +26,7 @@ public class Subsets {
     ArrayList<ArrayList<Integer>> output = new ArrayList<ArrayList<Integer>>();
     Collections.sort(A);
     output.add(new ArrayList<Integer>());
-    subsetsInLexicographicalOrder(output, A, new ArrayList<Integer>(), -1, A.size());
+    subsetsInLexicographicalOrder(output, A, new ArrayList<Integer>(), 0, A.size());
     return output;
 
   }
@@ -35,7 +35,7 @@ public class Subsets {
       ArrayList<Integer> temp,
       int k, int n) {
 
-    k = k + 1;
+    System.out.println("times");
 
     if (k == n) {
       return;
@@ -43,10 +43,10 @@ public class Subsets {
 
     temp.add(A.get(k));
     output.add(new ArrayList<Integer>(temp));
-    subsetsInLexicographicalOrder(output, A, temp, k, n);
+    subsetsInLexicographicalOrder(output, A, temp, k+1, n);
     temp.remove(temp.size() - 1);
 
-    subsetsInLexicographicalOrder(output, A, temp, k, n);
+    subsetsInLexicographicalOrder(output, A, temp, k+1, n);
 
   }
 
@@ -72,14 +72,13 @@ public class Subsets {
 
   static void subsetsIterativeNoOrder(ArrayList<Integer> A) {
 
-    ArrayList<ArrayList<Integer>> output;
-
     Queue<ArrayList<Integer>> queue = new LinkedList<>();
     queue.add(new ArrayList<>());
 
     for (int i = 0; i < A.size(); i++) {
 
       while (!queue.isEmpty()) {
+        System.out.println("times");
         ArrayList<Integer> list = queue.poll();
         list.add(A.get(i));
         queue.add(new ArrayList<>(list));
