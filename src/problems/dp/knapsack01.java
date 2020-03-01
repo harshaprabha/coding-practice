@@ -9,7 +9,6 @@ public class knapsack01 {
   static int C = 8;
   static int n = P.length;
 
-
   // Time complexity - O(n2)
   public static void main(String[] args) {
 
