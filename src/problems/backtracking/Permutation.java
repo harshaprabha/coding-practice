@@ -12,41 +12,35 @@ import java.util.Arrays;
 
 public class Permutation {
 
+  static ArrayList<ArrayList<Integer>> result = new ArrayList<>();
   public static void main(String[] args) {
     ArrayList<Integer> A = new ArrayList<>(Arrays.asList(1, 2, 3));
-    System.out.println(new Permutation().permute(A));
-
+    new Permutation().permutations(A, 0, 3, new ArrayList<>());
+    System.out.println(result);
   }
 
-  ArrayList<ArrayList<Integer>> result = new ArrayList<ArrayList<Integer>>();
+  void permutations(ArrayList<Integer> A, int i, int n, ArrayList<Integer> temp) {
 
-  public ArrayList<ArrayList<Integer>> permute(ArrayList<Integer> A) {
-    int n = A.size();
-    permutation(A, 0, n - 1);
-    return result;
-
-  }
-
-  public void swap(ArrayList<Integer> A, int i, int j) {
-    Integer temp = A.get(i);
-    A.set(i, A.get(j));
-    A.set(j, temp);
-  }
-
-  public void permutation(ArrayList<Integer> A, int left, int right) {
-
-    if (left == right) {
-      result.add(new ArrayList<>(A));
+    if (i >= n) {
+      if (temp.size() == n) {
+        result.add(new ArrayList<>(temp));
+      }
       return;
     }
 
-    for (int i = left; i <= right; i++) {
-      swap(A, left, i);
-      permutation(A, left + 1, right);
+    for (int j = i; j < n; j++) {
+      swap(A, i, j);
+      temp.add(A.get(i));
+      permutations(A, i + 1, n, temp);
+      temp.remove(temp.size() - 1);
+      swap(A,j,i);
     }
-
-
   }
 
-
+  void swap(ArrayList<Integer> A, int i, int j) {
+    int iValue = A.get(i);
+    int jValue = A.get(j);
+    A.set(i, jValue);
+    A.set(j, iValue);
+  }
 }
