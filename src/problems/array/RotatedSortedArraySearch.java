@@ -16,9 +16,14 @@ public class RotatedSortedArraySearch {
     RotatedSortedArraySearch rotatedSortedArraySearch = new RotatedSortedArraySearch();
     List<Integer> A = Arrays.asList(6, 7, 0, 1, 2, 3);
     System.out.println(rotatedSortedArraySearch.search(A, 7));
+    StringBuilder s= new StringBuilder();
+    s.reverse().toString();
 
   }
 
+  /*
+  Method 1 : O(logN) in 2 loops
+   */
   public int search(final List<Integer> A, int B) {
 
     int n = A.size();

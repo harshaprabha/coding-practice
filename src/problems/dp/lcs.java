@@ -3,9 +3,10 @@ package problems.dp;
 public class lcs {
 
   public static void main(String[] args) {
-    String A = "aedb";
-    String B = "abecdba";
-    new lcs().lcs2(A, B, A.length(), B.length());
+    String A = "abcdefgh";
+    String B = "acefg";
+    new lcs().lcs2(A, B);
+
 
   }
 
@@ -26,16 +27,11 @@ public class lcs {
 
 
   // O(n^2)
-  void lcs2(String A, String B, int m, int n) {
+  int lcs2(String A, String B) {
+    int m = A.length();
+    int n = B.length();
 
     int lcs[][] = new int[m + 1][n + 1];
-    for (int l = 0; l < m; l++) {
-      lcs[l][0] = 0;
-    }
-    for (int k = 0; k < n; k++) {
-      lcs[0][k] = 0;
-    }
-
     for (int i = 1; i <= m; i++) {
       for (int j = 1; j <= n; j++) {
         if (A.charAt(i - 1) == B.charAt(j - 1)) {
@@ -47,7 +43,39 @@ public class lcs {
       }
     }
 
-    System.out.println(lcs[m][n]);
+    for (int i = 0; i <= m; i++) {
+      for (int j = 0; j <= n; j++) {
+        System.out.print(lcs[i][j] + " ");
+      }
+      System.out.println();
+    }
+
+    // Print LCS
+    StringBuilder result = new StringBuilder();
+    for (int i = m; i > 0; ) {
+
+      for (int j = n; j > 0; ) {
+
+        if (A.charAt(i - 1) == B.charAt(j - 1)) {
+          result.append(A.charAt(i - 1));
+          i--;
+          j--;
+        } else {
+          //go to max index
+          if (lcs[i][j]==lcs[i - 1][j]) {
+            i--;
+          }
+          else
+            j--;
+        }
+
+
+      }
+    }
+
+    System.out.println(result.reverse().toString());
+
+    return lcs[m][n];
 
   }
 

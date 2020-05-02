@@ -1,19 +1,20 @@
 package problems.dp;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class WaysToDecode {
 
   ArrayList<ArrayList<Integer>> result = new ArrayList<>();
 
   public static void main(String[] args) {
-    new WaysToDecode().numDecodings("1325");
+    new WaysToDecode().numDecodings("1034");
   }
 
   public void numDecodings(String A) {
     int n = A.length();
-
-    //findWaysToDecode(A, n, 0, new ArrayList<>());
+    new ArrayList<>(Arrays.asList(2,5,6))
+;    //findWaysToDecode(A, n, 0, new ArrayList<>());
     System.out.println(findWaysToDecode2(A, n, 0, 1));
 
   }
@@ -84,4 +85,23 @@ public class WaysToDecode {
   }
 
 
+
+  public int noOfDecodings(int i, String s, int n) {
+
+    if(i>=n)
+      return 1;
+
+    int count = 0;
+
+
+    for(int l=1;l<=2;l++){
+      if(i+l<=n && Integer.valueOf(s.substring(i,i+l))<=26)
+      {
+        count+=noOfDecodings(i+l,s,n);
+      }
+    }
+
+    return count;
+
+  }
 }

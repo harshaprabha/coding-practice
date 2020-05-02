@@ -21,6 +21,12 @@ public class DFS {
     new DFS().dfs(graph);
   }
 
+
+
+  /**
+   * Using stack
+   * @param g
+   */
   public void dfs(Graph g) {
 
     Stack<Integer> stack = new Stack<>();

@@ -2,9 +2,9 @@ package problems.trees;
 
 public class Node {
 
-  int value;
-  Node left;
-  Node right;
+  public int value;
+  public Node left;
+  public Node right;
   Node inorder;
 
   public Node(int n) {

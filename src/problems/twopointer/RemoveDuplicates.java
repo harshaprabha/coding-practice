@@ -19,7 +19,6 @@ public class RemoveDuplicates {
   public int removeDuplicates2(ArrayList<Integer> A) {
 
     int n = A.size();
-
     if (n <= 1) {
       return n;
     }

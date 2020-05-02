@@ -2,6 +2,9 @@ package problems.sorting;
 
 /**
  * Time Complexity : O(n^2)
+ *
+ * @author Harsha Prabha E
+ * @see problems.sorting.Sort
  */
 public class BubbleSort implements Sort {
 
