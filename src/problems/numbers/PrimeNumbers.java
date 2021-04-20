@@ -1,6 +1,7 @@
 package problems.numbers;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 /**
  * Problem Statement See <a href="https://www.interviewbit.com/problems/prime-numbers/"> Prime
@@ -14,47 +15,31 @@ public class PrimeNumbers {
 
   public static void main(String[] args) {
     PrimeNumbers primeNumbers = new PrimeNumbers();
-    ArrayList<Integer> primes = primeNumbers.sieve(10);
+    ArrayList<Integer> primes = primeNumbers.sieve(100000);
     primes.stream().forEach(System.out::println);
 
   }
 
   public ArrayList<Integer> sieve(int A) {
-    ArrayList<Integer> result = new ArrayList<Integer>();
+    boolean prime [] = new boolean[A + 1];
+    Arrays.fill(prime, true);
+    prime[0] = prime[1] = false;
 
-    if (A <= 1) {
-      return result;
+    for (int i = 2; i <= A; i++) {
+      if (!prime[i])
+        continue;
+
+      for (long j = 1L * i * i; j <= (long) A; j += i)
+        prime[(int) j] = false;
     }
 
-    if (A == 2) {
-      result.add(2);
-      return result;
+    ArrayList<Integer> res = new ArrayList<>();
+
+    for (int i = 0; i <= A; i++) {
+      if (prime[i])
+        res.add(i);
     }
 
-    int primes[] = new int[A + 1];
-    primes[0] = 0;
-    primes[1] = 0;
-
-    for (int p = 2; p < primes.length; p++) {
-      primes[p] = 1;
-    }
-
-    for (int i = 2; i <= Math.sqrt(A); i++) {
-      if (primes[i] == 1) {
-        for (int j = 1; i * j <= A; j++) {
-          primes[i * j] = 0;
-        }
-      }
-    }
-
-    for (int p = 2; p < primes.length; p++) {
-      if (primes[p] == 1) {
-        result.add(p);
-      }
-    }
-
-    return result;
-
+    return res;
   }
-
 }

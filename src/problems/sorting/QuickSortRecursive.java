@@ -1,13 +1,13 @@
 package problems.sorting;
 
 /**
- * Time Complexity : O(nlogn)
+ * Time Complexity : O(nlogn) n comparisons with tree height log N
  */
 
 public class QuickSortRecursive implements Sort {
 
   public static void main(String[] args) {
-    int[] arr = {9, 4, 6, 2, 1, 11, 8, 0, -8};
+    int[] arr = {1, 4, 3, 2, 7, 8, 1};
 
     Sort sort = new QuickSortRecursive();
     sort.sort(arr, arr.length);
@@ -15,52 +15,52 @@ public class QuickSortRecursive implements Sort {
     for (int i = 0; i < arr.length; i++) {
       System.out.print(arr[i] + " ");
     }
+
   }
 
   @Override
   public void sort(int[] A, int n) {
-    quickSort(A, 0, n - 1);
-
+    quickSort(0, n - 1, A);
   }
 
-  void quickSort(int[] A, int low, int high) {
-    if (low > high) {
+  void quickSort(int low, int high, int[] A) {
+
+    if (low >= high) { // no single element comparison like merge sort
       return;
     }
-    int pivot = partitionArray(A, low, high);
-    quickSort(A, low, pivot - 1);
-    quickSort(A, pivot + 1, high);
+
+    int index = partition(low, high, A);
+    for (int i = 0; i < A.length; i++) {
+      System.out.print(A[i] + " ");
+    }
+    System.out.println();
+    quickSort(low, index - 1, A);
+    quickSort(index + 1, high, A);
 
   }
 
+  // Invariant of this method = All elements <=
+  // i will be less than pivot
+  int partition(int low, int high, int[] A) {
 
-  int partitionArray(int[] A, int low, int high) {
-    int pivot_i = high;
-    int pivot = A[high];
-    high = high - 1;
+    int pivot = A[high];// for random pivot, choose random pivot and swap with last to convert to this method
 
-    while (low <= high) {
-      while (low <= high && A[low] < pivot) {
-        low++;
+    int i = low - 1;
+    int r = high - 1;
+
+    for (int j = low; j <= r; j++) {
+      if (A[j] < pivot) {
+        i++;
+        int temp = A[i];
+        A[i] = A[j];
+        A[j] = temp;
       }
-      while (low <= high && A[high] > pivot) {
-        high--;
-      }
-
-      if (low <= high) {
-        int temp = A[low];
-        A[low] = A[high];
-        A[high] = temp;
-        low++;
-        high--;
-      }
-
-
     }
-    int temp = A[low];
-    A[low] = A[pivot_i];
-    A[pivot_i] = temp;
 
-    return low;
+    int temp = A[i + 1];
+    A[i + 1] = A[high];
+    A[high] = temp;
+
+    return i + 1;
   }
 }

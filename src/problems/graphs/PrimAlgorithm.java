@@ -1,5 +1,6 @@
 package problems.graphs;
 
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.PriorityQueue;
 import problems.graphs.WeightedGraph.EdgeNode;
@@ -94,7 +95,7 @@ public class PrimAlgorithm {
           distance[edge.vertex] = edge.weight;
         }
 
-        //Step 2 - Pick edge with minimum distance amoung all nodes not in minimum spanning tree - O(n)
+        //Step 2 - Pick edge with minimum distance among all nodes not in minimum spanning tree - O(n)
         int nextVertex = 1;
         int minDist = Integer.MAX_VALUE;
         for (int i = 0; i < graph.V; i++) {

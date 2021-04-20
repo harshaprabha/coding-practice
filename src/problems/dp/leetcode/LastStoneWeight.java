@@ -12,8 +12,6 @@ public class LastStoneWeight {
 
     int minWeight=Integer.MAX_VALUE;
 
-
-
     return minWeight;
 
 

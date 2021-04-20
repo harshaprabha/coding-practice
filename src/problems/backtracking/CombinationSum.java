@@ -2,50 +2,45 @@ package problems.backtracking;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
+import java.util.List;
 
 public class CombinationSum {
 
   public static void main(String[] args) {
-    ArrayList<Integer> A = new ArrayList<>(Arrays.asList(8, 10, 6, 11, 1, 16, 8));
-    System.out.println(new CombinationSum().combinationSum(A, 28));
+    int[] A={2,3,6,7};
+    System.out.println(new CombinationSum().combinationSum(A, 7));
   }
 
-  ArrayList<ArrayList<Integer>> result = new ArrayList<ArrayList<Integer>>();
 
-  public ArrayList<ArrayList<Integer>> combinationSum(ArrayList<Integer> A, int sum) {
-    int n = A.size();
-    Collections.sort(A);
-    ArrayList<Integer> B = new ArrayList<>();
+  List<List<Integer>> result = new ArrayList<>();
 
-    // remove duplicates
-    int i = 0;
-    while (i < n) {
-      B.add(A.get(i));
-      int j = i + 1;
-      while (j < n && A.get(i) == A.get(j)) {
-        j++;
-      }
-      i = j;
+  public List<List<Integer>> combinationSum(int[] candidates, int target) {
+    int n = candidates.length;
+
+    if (n == 0) {
+      return result;
     }
 
-    combnSum(B, 0, sum, B.size(), new ArrayList<Integer>(), 0);
+    combination(0, new ArrayList<>(), target, candidates);
     return result;
   }
 
-  public void combnSum(ArrayList<Integer> A, int i, int sum, int n, ArrayList<Integer> temp,
-      int tempSum) {
-    if (tempSum == sum) {
+  void combination(int i, ArrayList<Integer> temp, int target, int[] candidates) {
+    if (target == 0) {
       result.add(new ArrayList<>(temp));
-    } else if (tempSum < sum && i < n) {
+      return;
+    }
 
-      tempSum = tempSum + A.get(i);
-      temp.add(A.get(i));
-      combnSum(A, i, sum, n, temp, tempSum);
-      temp.remove(temp.size() - 1);
-      tempSum = tempSum - A.get(i);
-      combnSum(A, i + 1, sum, n, temp, tempSum);
+    if (i >= candidates.length) {
+      return;
+    }
 
+    for (int k = i; k < candidates.length; k++) {
+      if (candidates[k] <= target) {
+        temp.add(candidates[k]);
+        combination(k, temp, target - candidates[k], candidates);
+        temp.remove(temp.size() - 1);
+      }
     }
 
   }

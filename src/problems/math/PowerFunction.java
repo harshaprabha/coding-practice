@@ -1,5 +1,7 @@
 package problems.math;
 
+import java.util.Objects;
+
 /**
  * Problem Statement See <a href="https://www.interviewbit.com/problems/implement-power-function/">
  * Power Function</a>
@@ -9,9 +11,28 @@ package problems.math;
  */
 public class PowerFunction {
 
+  class A{
+    int a;
+    int b;
+
+    @Override
+    public boolean equals(Object o) {
+      if (this == o) return true;
+      if (o == null || getClass() != o.getClass()) return false;
+      A a1 = (A) o;
+      return a == a1.a &&
+              b == a1.b;
+    }
+
+    @Override
+    public int hashCode() {
+      return Objects.hash(a, b);
+    }
+  }
 
   public static void main(String[] args) {
    // System.out.println(pow(-1, 1, 20));
+
     System.out.println(new PowerFunction().pow2(3,5,1,1));
   }
 

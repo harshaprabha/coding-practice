@@ -35,7 +35,7 @@ public class KMP {
     jump[0] = 0;
 
     for (int i = 1, j = 0; i < pattern.length() && j < i; ) {
-      int k=i;
+      int k = i;
       // j is slow, i is fast
       if (pattern.charAt(i) == pattern.charAt(j)) {
         jump[i] = j + 1;
@@ -53,21 +53,18 @@ public class KMP {
 
     //Match pattern with text
 
-    int p=0;
-    for(int k=0;k<text.length();){
-      if(pattern.charAt(p)!=text.charAt(k))
-      {
-        p=jump[p];
-      }
-      else
-      {
-        if(p==pattern.length()-1)
-        {
-          result.add(k-pattern.length()-1);
-          p=0;
+    int p = 0;
+    for (int k = 0; k < text.length(); ) {
+      if (pattern.charAt(p) != text.charAt(k)) {
+        p = jump[p];
+      } else {
+        if (p == pattern.length() - 1) {
+          result.add(k - pattern.length() - 1);
+          p = 0;
           continue;
+        } else {
+          p++;
         }
-        else p++;
       }
       k++;
     }

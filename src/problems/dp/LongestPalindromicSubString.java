@@ -3,30 +3,58 @@ package problems.dp;
 public class LongestPalindromicSubString {
 
   public static void main(String[] args) {
-    System.out.println(new LongestPalindromicSubString().longestPalindrome("cbbd"));
+    String a=new StringBuilder("geetha").reverse().toString();
+    System.out.println(a);
+    //System.out.println(new LongestPalindromicSubString().longestPalindrome(""));
   }
   String str = "";
   int max = 0;
 
   public String longestPalindrome(String s) {
-    int n = s.length();
-    if (n == 0) {
-      return "";
+    int n= s.length();
+
+    boolean dp[][]= new boolean[n+1][n+1];
+    dp[0][0]=true;
+    int max=1;
+    String pal="";
+    for(int i=n;i>0;i--)
+    {
+      for(int j=n;j>=i;j--)
+      {
+        if(i==j)
+          dp[i][j]=true;
+        else
+        {
+          if(s.charAt(i-1)==s.charAt(j-1))
+            dp[i][j]=i+1==j? true: dp[i+1][j-1];
+        }
+
+        if(dp[i][j])
+        {
+          if(j-i+1>max)
+          {
+            max=j-i+1;
+            pal=s.substring(i-1,j);
+          }
+        }//if
+      }
     }
 
-    if (n == 1) {
-      return s;
+    for (boolean[] arr : dp) {
+      for(int j=0;j<=n;j++)
+      System.out.print(arr[j]+" ");
+      System.out.println();
     }
 
-    findLongPalin(s, 0, n - 1);
+    return pal;
 
-    return str;
   }
 
 
   boolean findLongPalin(String s, int i, int j) {
 
     boolean isPalin = false;
+
 
     if (i == j) {
       return true;

@@ -1,5 +1,8 @@
 package problems.heaps;
 
+import java.util.PriorityQueue;
+import java.util.TreeMap;
+
 public class Heaps {
 
   public static void main(String[] args) {
@@ -10,6 +13,11 @@ public class Heaps {
     for (int i = n / 2 - 1; i >= 0; i--) {
       heapify_up(A, i, n);
     }
+
+    TreeMap<Integer,Integer> tmap= new TreeMap<>((a,b)->b-a);
+
+    TreeMap<int[],Integer> temap= new TreeMap<>((a,b)->b[0]-a[0]);
+
 
     //sort
     heapsort(A);

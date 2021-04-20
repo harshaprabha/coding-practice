@@ -5,7 +5,7 @@ import java.util.Arrays;
 
 /**
  * Problem Statement : Find all permutations of a set with unique numbers
- * <p>Time Complexity - O(n^2)</p>
+ * <p>Time Complexity - O(n!)</p>
  *
  * @author Harsha Prabha E
  */
@@ -33,7 +33,8 @@ public class Permutation {
       temp.add(A.get(i));
       permutations(A, i + 1, n, temp);
       temp.remove(temp.size() - 1);
-      swap(A,j,i);
+      swap(A,i,j);// undo swap
+
     }
   }
 
